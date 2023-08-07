@@ -1,0 +1,6 @@
+<app-product-card
+  *ngIf="post"
+  [inputPost]="post"
+  [view]="true"
+  (clicked)="visitDetails(post.id)"
+></app-product-card>

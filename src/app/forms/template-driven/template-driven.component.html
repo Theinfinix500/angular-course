@@ -1,0 +1,52 @@
+<!-- Template Driven Forms -->
+<h1>Template Driven Forms</h1>
+<div class="m-8 flex items-center justify-center max-w-[500px]">
+  <form class="flex-1" #registerForm="ngForm" (ngSubmit)="handleSubmit()">
+    {{ registerForm.valid }}
+    <div class="flex flex-col mb-4">
+      <label>Title</label>
+      <input
+        type="text"
+        class="bg-slate-200 px-3 py-1 rounded"
+        [(ngModel)]="postForm.title"
+        name="title"
+        required
+        #title="ngModel"
+      />
+      <span
+        class="text-red-500 font-semibold"
+        *ngIf="
+          (title.touched || registerForm.submitted) && title.errors?.required
+        "
+      >
+        Title is required
+      </span>
+    </div>
+    <div class="flex flex-col mb-4">
+      <label>Body</label>
+      <input
+        type="text"
+        class="bg-slate-200 px-3 py-1 rounded"
+        [(ngModel)]="postForm.body"
+        #body="ngModel"
+        name="body"
+        required
+      />
+      <span
+        class="text-red-500 font-semibold"
+        *ngIf="
+          (body.touched || registerForm.submitted) && body.errors?.required
+        "
+      >
+        Body is required
+      </span>
+    </div>
+    <button
+      class="bg-blue-400 text-white px-5 py-2 disabled:bg-slate-400"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>

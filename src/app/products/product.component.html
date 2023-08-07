@@ -1,0 +1,11 @@
+<div class="flex flex-wrap">
+  <ng-container
+    *ngFor="let post of posts | async; let first = first; let last = last"
+  >
+    <app-product-card
+      *ngIf="post"
+      [inputPost]="post"
+      (clicked)="visitDetails(post.id)"
+    ></app-product-card>
+  </ng-container>
+</div>

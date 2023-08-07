@@ -1,0 +1,48 @@
+<!-- Reactive Forms -->
+<h1>Reactive Forms</h1>
+<div class="m-8 flex items-center justify-center max-w-[500px]">
+  <form
+    class="flex-1"
+    (ngSubmit)="handleReactiveSubmit()"
+    [formGroup]="postReactiveForm"
+  >
+    {{ postReactiveForm.valid }}
+    <div class="flex flex-col mb-4">
+      <label>Title</label>
+      <input
+        type="text"
+        class="bg-slate-200 px-3 py-1 rounded"
+        name="title"
+        formControlName="title"
+      />
+      <span
+        *ngIf="(submittedForm || titleControl.touched) && titleRequired"
+        class="text-red-500 font-semibold"
+      >
+        Title is required
+      </span>
+    </div>
+    <div class="flex flex-col mb-4">
+      <label>Body</label>
+      <input
+        type="text"
+        class="bg-slate-200 px-3 py-1 rounded"
+        name="body"
+        formControlName="body"
+      />
+      <span
+        *ngIf="submittedForm || (bodyControl.touched && bodyRequired)"
+        class="text-red-500 font-semibold"
+      >
+        Body is required
+      </span>
+    </div>
+    <button
+      class="bg-blue-400 text-white px-5 py-2 disabled:bg-slate-400"
+      type="submit"
+      [disabled]="postReactiveForm.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>

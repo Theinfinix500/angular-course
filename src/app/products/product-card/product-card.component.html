@@ -1,0 +1,7 @@
+<div class="border m-4 p-5">
+  <span [ngStyle]="{ color: 'black' }">{{ post.user?.username }}</span>
+  <h1 class="text-lg font-bold">{{ post.title }}</h1>
+
+  <p>{{ post.body }}</p>
+  <button *ngIf="!viewMode" (click)="onClick()">Click</button>
+</div>
