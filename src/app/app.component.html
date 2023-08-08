@@ -17,9 +17,10 @@
       >
     </li>
   </ul>
+  <div *ngIf="postsService.sharedData$ | async as sharedData">
+    <div>{{ sharedData }}</div>
+  </div>
 </nav>
 <main class="p-6">
-  <ng-template #someTemplate>This is a test</ng-template>
-  <ng-container *ngTemplateOutlet="someTemplate"></ng-container>
   <router-outlet></router-outlet>
 </main>

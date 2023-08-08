@@ -1,3 +1,4 @@
+import { PostsService } from './services/posts.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  constructor(public postsService:PostsService) {}
+
   ngOnInit(): void {
     // set something global
     // set auth config -> Connected user

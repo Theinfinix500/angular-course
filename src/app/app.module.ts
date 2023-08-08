@@ -33,11 +33,11 @@ registerLocaleData(localeFR);
       useClass: JwtInterceptor,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: NotFoundInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: NotFoundInterceptor,
+    //   multi: true,
+    // },
     {
       provide: LOCALE_ID,
       useValue: 'fr',

@@ -1,6 +1,17 @@
+<!-- search input -->
+<div class="p-5">
+  <input
+    (input)="search(searchInput.value)"
+    #searchInput
+    type="text"
+    placeholder="Search..."
+    class="border w-full px-4 py-2 rounded"
+  />
+</div>
+
 <div class="flex flex-wrap">
   <ng-container
-    *ngFor="let post of posts | async; let first = first; let last = last"
+    *ngFor="let post of posts; let first = first; let last = last"
   >
     <app-product-card
       *ngIf="post"

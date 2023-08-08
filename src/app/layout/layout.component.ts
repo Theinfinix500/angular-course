@@ -68,7 +68,11 @@ export class LayoutComponent implements OnInit {
 
   constructor(private postsService: PostsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.postsService.sharedData$.subscribe((result) => {
+      console.log(result);
+    });
+  }
 
   updateClickedPost(postId: number) {
     const dummyData = {
