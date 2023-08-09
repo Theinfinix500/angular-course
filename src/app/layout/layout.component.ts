@@ -1,9 +1,23 @@
-import { switchMap, Observable } from 'rxjs';
+import { switchMap, Observable, of } from 'rxjs';
 import { Post } from '../models/post.model';
 import { PostsService } from './../services/posts.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional, SkipSelf } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+class ComponentPostsProvider {
+  constructor() {
+    console.log('Hello from ComponentPostsProvider');
+  }
+
+  concatMapWithoutForkJoin() {
+    return of([]);
+  }
+  searchTermSubjectObservable() {
+    return of([]);
+  }
+
+  sharedData$ = of({});
+}
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -66,7 +80,8 @@ export class LayoutComponent implements OnInit {
   posts!: Observable<Post[]>;
   showError: boolean = false;
 
-  constructor(private postsService: PostsService) {}
+  constructor(@Optional() public postsService: PostsService) {
+  }
 
   ngOnInit(): void {
     this.postsService.sharedData$.subscribe((result) => {

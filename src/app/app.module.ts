@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,8 +14,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { NotFoundInterceptor } from './interceptors/not-found.interceptor';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { of } from 'rxjs';
+import { APP_PROVIDERS } from './configs/providers.config';
 
 registerLocaleData(localeFR);
+
+
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, NotFoundComponent],
@@ -27,23 +31,7 @@ registerLocaleData(localeFR);
     ProductsModule,
     AppRoutingModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-    },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: NotFoundInterceptor,
-    //   multi: true,
-    // },
-    {
-      provide: LOCALE_ID,
-      useValue: 'fr',
-    },
-    PostsService,
-  ],
+  providers: [...APP_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

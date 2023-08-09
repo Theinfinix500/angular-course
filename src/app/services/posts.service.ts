@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post.model';
 import {
@@ -22,18 +22,21 @@ import {
   AsyncSubject,
 } from 'rxjs';
 import { User } from '../models/user.model';
+import { BACKEND_URL } from '../configs/providers.config';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class PostsService {
-  private API_URL = 'https://jsonplaceholder.typicode.com';
   private users: User[] = [];
   private searchTermSubject: Subject<string> = new Subject();
   private sharedDataSubject: BehaviorSubject<any> = new BehaviorSubject('User');
 
   combinedObservables = combineLatest([this.getPosts(), this.getUsers()]);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(BACKEND_URL) private API_URL) {
     // this.getUsers().subscribe();
+    console.log('Hello from PostsService');
   }
 
   searchTerm(value: string) {

@@ -1,5 +1,5 @@
 import { PostsService } from './services/posts.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(public postsService:PostsService) {}
+  constructor(@Optional() public postsService: PostsService) {}
 
   ngOnInit(): void {
     // set something global
